@@ -3,7 +3,7 @@ services:
     image: deluan/navidrome:latest
     container_name: navidrome
     ports:
-      - "4533:4533"
+      - "${APP_PORT:-4533}:4533"
     environment:
       ND_LOGLEVEL: info
       ND_COVERJPEGQUALITY: 100
@@ -18,7 +18,7 @@ services:
       ND_SPOTIFY_ID: ${SPOTIFY_ID}
       ND_SPOTIFY_SECRET: ${SPOTIFY_SECRET}
     volumes:
-      - "./data:/data"
+      - "data:/data"
       - "${MUSIC_FOLDER}:/music:ro"
     restart: unless-stopped
     networks:
@@ -27,3 +27,7 @@ services:
 networks:
   net:
     external: false
+
+volumes:
+  data:
+    name: navidrome-data
