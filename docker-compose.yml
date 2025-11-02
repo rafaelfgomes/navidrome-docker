@@ -18,7 +18,7 @@ services:
       ND_SPOTIFY_ID: ${SPOTIFY_ID}
       ND_SPOTIFY_SECRET: ${SPOTIFY_SECRET}
     volumes:
-      - "data:/data"
+      - "${DATA_FOLDER:-./data}:/data"
       - "${MUSIC_FOLDER}:/music:ro"
     restart: unless-stopped
     networks:
@@ -27,7 +27,3 @@ services:
 networks:
   net:
     external: false
-
-volumes:
-  data:
-    name: navidrome-data
