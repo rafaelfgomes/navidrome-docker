@@ -1,9 +1,8 @@
 services:
   navidrome:
-    image: deluan/navidrome:latest
+    image: deluan/navidrome
     container_name: navidrome
-    ports:
-      - "${APP_PORT:-4533}:4533"
+    hostname: navidrome
     environment:
       ND_LOGLEVEL: info
       ND_COVERJPEGQUALITY: 100
@@ -22,8 +21,9 @@ services:
       - "${MUSIC_FOLDER}:/music:ro"
     restart: unless-stopped
     networks:
-      - net
+      external:
+        ipv4_address: ${NAVIDROME_IP}
 
 networks:
-  net:
-    external: false
+  external:
+    name: ${EXTERNAL_NETWORK_NAME}
