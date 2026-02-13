@@ -17,7 +17,7 @@ services:
       ND_SPOTIFY_ID: ${SPOTIFY_ID}
       ND_SPOTIFY_SECRET: ${SPOTIFY_SECRET}
     volumes:
-      - "${DATA_FOLDER:-./data}:/data"
+      - "${NAVIDROME_DATA_FOLDER:-./data}:/data"
       - "${MUSIC_FOLDER}:/music:ro"
     restart: unless-stopped
     networks:
