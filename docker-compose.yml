@@ -26,4 +26,5 @@ services:
 
 networks:
   external:
+    external: true
     name: ${EXTERNAL_NETWORK_NAME}
